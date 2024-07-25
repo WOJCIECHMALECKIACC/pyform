@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Style for the container */
+        .container {
+            position: relative; /* Set container as relative positioning */
+        }
+        /* Style for the time and date display */
+        #current-time {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 2px; /* Add 2px padding */
+        }
+    </style>
+    <script>
+        function updateClock() {
+            const currentTime = new Date().toLocaleString();
+            document.getElementById('current-time').textContent = currentTime;
+        }
+        setInterval(updateClock, 1000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ username }}</h2>
+        <div id="current-time"></div> <!-- Display time and date here -->
+        <div class="form-group">
+            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
+

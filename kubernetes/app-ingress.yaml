@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app: pyform
+  name: ingress-pyform
+  namespace: client-apps
+spec:
+  rules:
+  - host: pyform.appsec-yggdrasil.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: pyform-service
+            port:
+              number: 8080
+        path: "/"
+        pathType: Prefix
+  tls:
+  - hosts:
+    - pyform.appsec-yggdrasil.com
+    secretName: pyform-ingress-secret

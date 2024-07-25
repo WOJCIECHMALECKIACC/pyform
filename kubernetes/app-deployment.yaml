@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyform-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pyform
+  template:
+    metadata:
+      labels:
+        app: pyform
+    spec:
+      containers:
+        - name: pyform
+          image: showcasepreprodacr.azurecr.io/pyform:latest
+          ports:
+            - containerPort: 5000
+
